@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  web-server:
+    build: .
+    container_name: node_web
+    volumes:
+      - .:/app
+    ports:
+      - 800:80
