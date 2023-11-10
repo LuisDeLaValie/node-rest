@@ -1,18 +1,20 @@
-const http = require('http');
 
 
-const port = 80;
+// Importar las dependencias
+const express = require('express');
 
+// Crear una instancia de Express
+const app = express();
 
-const servidor = http.createServer(function (req, res) {
-    res.statusCode = 500;
+// Configurar el middleware body-parser
+// app.use(bodyParser.json());
 
-    res.setHeader("content-type", 'text/plain');
-
-    res.end("hola mundo");
+// Definir las rutas de la aplicación
+app.get('/', (req, res) => {
+  res.send('Hola, mundo!');
 });
 
-
-servidor.listen(port, function () {
-    console.log("Servidor corriendo en el http://localhost");
+// Iniciar la aplicación
+app.listen(3000, () => {
+  console.log('Aplicación iniciada en el puerto 3000');
 });
