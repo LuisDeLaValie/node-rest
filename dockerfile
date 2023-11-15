@@ -1,16 +1,22 @@
-FROM node:20.9.0-alpine3.18
+#Utilizar imagen base de node.js
+FROM node:lts
 
-WORKDIR /app
 
+#crea y cambia el directorio actual a /app
+WORKDIR /app 
 
-COPY package*.json /app
+#copiamos archivo de dependencias
+COPY ./package*.json /app/
 
+#intalar las dependencias
 RUN npm install
 
+#copiamos el contenido del proyecto a
+COPY . /app/
 
-COPY . /app
-
-
+#exponer puerto 80
 EXPOSE 80
 
-CMD [ "node","app.js" ]
+#iniciar aplicacion
+CMD ["node", "app.js"]
+
