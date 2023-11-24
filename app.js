@@ -17,6 +17,8 @@ app.get('/', function (req, res){
 });
 
 app.get('/temas', TemasController.indexGet);
+app.get('/temas/:id([0-9]+)', TemasController.itemGet);
+
 app.get('/autores', AutoresController.indexGet);
 app.get('/libros', LibrosController.indexGet);
 app.get('/editorial', EditorialesController.indexGet);
