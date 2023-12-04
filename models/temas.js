@@ -16,6 +16,12 @@ class TemasModel {
         let query = db('temas').where('nombre', nombre);
         return await query;
     }
+
+    static async agregarTemas(temas) {
+        let query = db('temas').insert(temas)
+        return await query;
+        
+    }
 }
 
 module.exports = TemasModel;

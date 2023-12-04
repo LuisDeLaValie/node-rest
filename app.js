@@ -1,4 +1,6 @@
 const express= require('express');
+var bodyParser = require('body-parser');
+
 const TemasController = require('./controllers/TemasControllers');
 const AutoresController = require('./controllers/autoresControllers');
 const EditorialesController = require('./controllers/editorialesControllers ');
@@ -7,7 +9,9 @@ const app = express();
 //Definimos el puerto 80
 const puerto = 80;
 
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', function (req, res){
@@ -17,10 +21,13 @@ app.get('/', function (req, res){
 });
 
 app.get('/temas', TemasController.indexGet);
+app.post('/temas', TemasController.agregar);
 app.get('/temas/:id([0-9]+)', TemasController.itemGet);
 
-app.get('/autores', AutoresController.indexGet);
 app.get('/libros', LibrosController.indexGet);
+app.post('/libros', LibrosController.agregar);
+
+app.get('/autores', AutoresController.indexGet);
 app.get('/editorial', EditorialesController.indexGet);
 
 app.listen(puerto, function(){

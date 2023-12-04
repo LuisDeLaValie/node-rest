@@ -15,6 +15,29 @@ class TemasController {
         }
         res.send(data[0]);
     }
+
+    static async agregar(req, res){
+       
+        try {
+
+            let data = await TemasModel.agregarTemas(req.body)
+            // if (data.length == 0){
+            //     res.status(404).send({code: 404, message:'not found'});
+            // }
+            // res.send(data);
+
+            data = await TemasModel.consultarPorId(data[0]);
+            if (data.length == 0){
+                res.status(404).send({code: 404, message:'not found'});
+            }
+            res.send(data[0]);
+        } catch (error) {
+                           res.status(404).send({code: 404, message:error.sqlMessage});
+ 
+        }
+        
+       
+    }
 }
 
 module.exports = TemasController;
